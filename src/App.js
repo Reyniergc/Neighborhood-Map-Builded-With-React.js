@@ -1,21 +1,42 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
+import {Map, InfoWindow, Marker, GoogleApiWrapper} from 'google-maps-react';
 
-class App extends Component {
-  render() {
-    return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Welcome to React</h1>
-        </header>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
-      </div>
-    );
-  }
+export class MapContainer extends Component {
+	constructor(props) {
+		super(props);
+
+		const style = {
+			width: '100%',
+			height: '100%'
+		}
+	}
+
+	render() {
+		return (
+			<Map 
+				google={this.props.google}
+				style={this.style}
+				initialCenter={{lat: 35.85472104, lng: 14.48779873}}
+				zoom={11}>
+				<Marker onClick={this.onMarkerClick} name={'Current location'} />
+			</Map>
+		);
+	}
 }
 
-export default App;
+const LoadingContainer = (props) => (
+  <div>Fancy loading container!</div>
+)
+ 
+export default GoogleApiWrapper({
+  apiKey: ("AIzaSyBHq-A0EL3usDeqH5q8B635Rafxcguc0a8"),
+  LoadingContainer: LoadingContainer
+})(MapContainer)
+
+/*
+<InfoWindow onClose={this.onInfoWindowClose}>
+	<div>
+		<h1>{this.state.selectedPlace.name}</h1>
+	</div>
+	</InfoWindow>
+*/
