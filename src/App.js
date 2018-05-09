@@ -23,17 +23,17 @@ export class MapContainer extends Component {
 			},
 			{
 				title: "Malta Free Port.",
-				name: "",
+				name: "Malta Free Port",
 				position: ["35.81583", "14.53768409"]
 			},
 			{
 				title: "Popeye Village.",
-				name: "Popeye",
+				name: "Popeye Village",
 				position: ["35.96113379", "14.34150067"]
 			},
 			{
 				title: "Café Del Mar Malta.",
-				name: "Soma",
+				name: "Café Del Mar Malta",
 				position: ["35.95905948", "14.42386195"]
 			}
 			,
