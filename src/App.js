@@ -5,6 +5,12 @@ export class MapContainer extends Component {
 	constructor(props) {
 		super(props);
 
+		this.state = {
+			showingInfoWindow: false,
+			activeMarker: {},
+			selectedPlace: {}
+		};
+
 		this.style = {
 			width: '100%',
 			height: '100%'
@@ -35,8 +41,7 @@ export class MapContainer extends Component {
 				title: "Café Del Mar Malta.",
 				name: "Café Del Mar Malta",
 				position: ["35.95905948", "14.42386195"]
-			}
-			,
+			},
 			{
 				title: "St. Paul's Catacombs.",
 				name: "St. Paul's Catacombs",
@@ -45,21 +50,40 @@ export class MapContainer extends Component {
 		]
 	}
 
+	onMarkerClick = (props, marker, e) => {
+		this.setState({
+			showingInfoWindow: true,
+			activeMarker: marker,
+			selectedPlace: props
+		});
+
+		console.log(marker);
+	}
+
 	render() {
 		return (
 			<Map 
 				google={this.props.google}
 				style={this.style}
 				initialCenter={{lat: 35.85472104, lng: 14.48779873}}
-				zoom={11}>
+				zoom={12}>
 
 				{this.objMarkers.map((marker, index) => (
 					<Marker
 						key={index}
 						title={marker.title}
 						name={marker.name}
-						position={{lat: marker.position[0], lng: marker.position[1]}} />
+						position={{lat: marker.position[0], lng: marker.position[1]}}
+						onClick={this.onMarkerClick} />
 				))}
+				
+				<InfoWindow
+					marker={this.state.activeMarker}
+					visible={this.state.showingInfoWindow}>
+					<div>
+						<h1>{this.state.selectedPlace.name}</h1>
+					</div>
+				</InfoWindow>
 			</Map>
 		);
 	}
