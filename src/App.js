@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
 import {Map, InfoWindow, Marker, GoogleApiWrapper} from 'google-maps-react';
+import ListViewLocation from './ListViewLocation';
 
 export class MapContainer extends Component {
+
 	constructor(props) {
 		super(props);
 
@@ -62,29 +64,34 @@ export class MapContainer extends Component {
 
 	render() {
 		return (
-			<Map 
-				google={this.props.google}
-				style={this.style}
-				initialCenter={{lat: 35.85472104, lng: 14.48779873}}
-				zoom={12}>
+			<div>
+				<Map 
+					google={this.props.google}
+					style={this.style}
+					initialCenter={{lat: 35.85472104, lng: 14.48779873}}
+					zoom={12}>
 
-				{this.objMarkers.map((marker, index) => (
-					<Marker
-						key={index}
-						title={marker.title}
-						name={marker.name}
-						position={{lat: marker.position[0], lng: marker.position[1]}}
-						onClick={this.onMarkerClick} />
-				))}
-				
-				<InfoWindow
-					marker={this.state.activeMarker}
-					visible={this.state.showingInfoWindow}>
-					<div>
-						<h1>{this.state.selectedPlace.name}</h1>
-					</div>
-				</InfoWindow>
-			</Map>
+					{this.objMarkers.map((marker, index) => (
+						<Marker
+							key={index}
+							title={marker.title}
+							name={marker.name}
+							position={{lat: marker.position[0], lng: marker.position[1]}}
+							onClick={this.onMarkerClick} />
+					))}
+					
+					<InfoWindow
+						marker={this.state.activeMarker}
+						visible={this.state.showingInfoWindow}>
+						<div>
+							<h1>{this.state.selectedPlace.name}</h1>
+							<p>{this.state.selectedPlace.title}</p>
+						</div>
+					</InfoWindow>					
+				</Map>
+
+				<ListViewLocation listViewLocation={this.objMarkers} />
+			</div>
 		);
 	}
 }
