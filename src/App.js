@@ -14,7 +14,7 @@ export class MapContainer extends Component {
 		};
 
 		this.style = {
-			width: '80%',
+			width: '70%',
 			height: '100%'
 		}
 		

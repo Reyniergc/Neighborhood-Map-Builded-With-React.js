@@ -7,7 +7,7 @@ class ListViewLocation extends Component {
 		const { listViewLocation } = this.props
 
 		return (
-			<div>
+			<div className="listViewLocation">
 				<ul>
 					{listViewLocation.map((viewLocation, index) => (
 						<li key={index}>
