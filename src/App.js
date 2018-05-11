@@ -14,8 +14,10 @@ export class MapContainer extends Component {
 		};
 
 		this.style = {
-			width: '70%',
-			height: '100%'
+			float: "right",
+			position: "relative",
+			height: "100%",
+			width: "70%"
 		}
 		
 		this.objMarkers = [
