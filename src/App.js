@@ -8,7 +8,7 @@ export class MapContainer extends Component {
 		super(props);
 
 		this.state = {
-			AddressList: [],
+			AddressListMarkers: [],
 			showingInfoWindow: false,
 			activeMarker: {},
 			selectedPlace: {}
@@ -21,34 +21,7 @@ export class MapContainer extends Component {
 
 		this.objMarkers = [
 			{
-				title: "Malta International Airport.",
-				name: "International Airport",
-				position: ["35.85142254", "14.49219836"]
-			},
-			{
-				title: "Hagar Kin Template.",
-				name: "Hagar Kin Template",
-				position: ["35.82908772", "14.44275989"]
-			},
-			{
-				title: "Restaurant",
-				name: "Restaurant",
-				position: ["35.81583", "14.53768409"]
-			},
-			{
-				title: "Museum.",
-				name: "Museum",
-				position: ["35.96113379", "14.34150067"]
-			},
-			{
-				title: "Café Del Mar Malta.",
-				name: "Café Del Mar Malta",
-				position: ["35.95905948", "14.42386195"]
-			},
-			{
-				title: "St. Paul's Catacombs.",
-				name: "St. Paul's Catacombs",
-				position: ["35.88117638", "14.39832799"]
+				position: ["35.84915612671902", "14.495490252452312"]
 			}
 		]
 
@@ -61,8 +34,20 @@ export class MapContainer extends Component {
 	}
 
 	componentDidMount() {
-		this.getAddressApi().then(data => {
-			this.setState({ AddressList: this.state.AddressList.concat(data.response.venues) });
+		this.getAddressApi().then(data => {	console.log(data.response.venues)			
+			for (const marker of this.objMarkers) {
+				for (const obj of data.response.venues) {				
+					if ((marker.position[0] == obj.location.lat) && (marker.position[1] == obj.location.lng)) {console.log("entre");
+						this.state.AddressListMarkers.push({
+							name: obj.name.substring(0, 34),
+							position: [obj.location.lat, obj.location.lng]
+						});
+						break;
+					}
+				}
+			}
+
+			this.setState({ AddressListMarkers: this.state.AddressListMarkers });
 		})
 	}
 
@@ -79,10 +64,10 @@ export class MapContainer extends Component {
 	}
 
 	render() {
-		console.log(this.state.AddressList);
+		console.log(this.state.AddressListMarkers)
 		return (
 			<div className="container">
-				<ListViewLocation listViewLocation={this.objMarkers} handleChange={this.handleChange} />
+				<ListViewLocation listViewLocation={this.state.AddressListMarkers} handleChange={this.handleChange} />
 			
 				<div id="google_map">
 					<Map 
@@ -91,7 +76,7 @@ export class MapContainer extends Component {
 						initialCenter={{lat: 35.85472104, lng: 14.48779873}}
 						zoom={12}>
 
-						{this.objMarkers.map((marker, index) => (
+						{this.state.AddressListMarkers.map((marker, index) => (
 							<Marker
 								key={index}
 								title={marker.title}
