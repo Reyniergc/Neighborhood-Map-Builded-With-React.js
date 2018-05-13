@@ -8,18 +8,17 @@ export class MapContainer extends Component {
 		super(props);
 
 		this.state = {
+			AddressList: [],
 			showingInfoWindow: false,
 			activeMarker: {},
 			selectedPlace: {}
 		};
 
 		this.style = {
-			//float: "right",
-			//position: "relative",
 			height: "97%",
 			width: "70%"
 		}
-		
+
 		this.objMarkers = [
 			{
 				title: "Malta International Airport.",
@@ -32,13 +31,13 @@ export class MapContainer extends Component {
 				position: ["35.82908772", "14.44275989"]
 			},
 			{
-				title: "Malta Free Port.",
-				name: "Malta Free Port",
+				title: "Restaurant",
+				name: "Restaurant",
 				position: ["35.81583", "14.53768409"]
 			},
 			{
-				title: "Popeye Village.",
-				name: "Popeye Village",
+				title: "Museum.",
+				name: "Museum",
 				position: ["35.96113379", "14.34150067"]
 			},
 			{
@@ -52,6 +51,19 @@ export class MapContainer extends Component {
 				position: ["35.88117638", "14.39832799"]
 			}
 		]
+
+		this.handleChange = this.handleChange.bind(this);
+	}
+	
+	getAddressApi() {
+		return fetch("https://api.foursquare.com/v2/venues/search?ll=35.85472104,14.48779873&categoryId=4bf58dd8d48988d181941735,4bf58dd8d48988d15e941735,4d4b7105d754a06374d81259,4bf58dd8d48988d13a941735,4bf58dd8d48988d1ed931735&client_id=LZL0304WQ5WHZCSUFSAPCVXF45DJNGGJAVDQGEL2J1DT04J5&client_secret=CZSMM1XIYLGFHZSZ3PMDXMOFSTHXE44ZWN4WFVK0IM0D4BK3&v=20180513")
+		.then(res => res.json())
+	}
+
+	componentDidMount() {
+		this.getAddressApi().then(data => {
+			this.setState({ AddressList: this.state.AddressList.concat(data.response.venues) });
+		})
 	}
 
 	onMarkerClick = (props, marker, e) => {
@@ -61,11 +73,16 @@ export class MapContainer extends Component {
 			selectedPlace: props
 		});
 	}
+	
+	handleChange(event) {		
+		const index = event.target.value;
+	}
 
 	render() {
+		console.log(this.state.AddressList);
 		return (
 			<div className="container">
-				<ListViewLocation listViewLocation={this.objMarkers} />
+				<ListViewLocation listViewLocation={this.objMarkers} handleChange={this.handleChange} />
 			
 				<div id="google_map">
 					<Map 

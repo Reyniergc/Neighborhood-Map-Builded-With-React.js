@@ -4,24 +4,25 @@ import PropTypes from 'prop-types';
 class ListViewLocation extends Component {
 
 	render() {
-		const { listViewLocation } = this.props
+		const { listViewLocation, handleChange } = this.props
 
 		return (
 			<div className="listViewLocation">
-				<ul>
+				<select onChange={(event) => handleChange(event)}>
 					{listViewLocation.map((viewLocation, index) => (
-						<li key={index}>
+						<option key={index} value={index}>
 							{viewLocation.name}
-						</li>
+						</option>
 					))}
-				</ul>
+				</select>
 			</div>
 		);
 	}
 }
 
 ListViewLocation.propTypes = {
-	listViewLocation: PropTypes.array.isRequired
+	listViewLocation: PropTypes.array.isRequired,
+	handleChange: PropTypes.func.isRequired
 };
 
 export default ListViewLocation

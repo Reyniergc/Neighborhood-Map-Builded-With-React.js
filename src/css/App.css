@@ -1,8 +1,4 @@
-.listViewLocation {
-	width: 30%;
-}
-
-body{
+body {
   overflow-x: hidden;
 }
 
@@ -10,7 +6,10 @@ ul {
 	list-style: none;
 }
 
+.listViewLocation {
+	width: 30%;
+}
+
 .container {
 	display: flex;
 }
- 
