@@ -34,7 +34,7 @@ export class MapContainer extends Component {
 	}
 
 	componentDidMount() {
-		this.getAddressApi().then(data => {	console.log(data.response.venues)			
+		this.getAddressApi().then(data => {			
 			for (const marker of this.objMarkers) {
 				for (const obj of data.response.venues) {				
 					if ((marker.position[0] == obj.location.lat) && (marker.position[1] == obj.location.lng)) {console.log("entre");
