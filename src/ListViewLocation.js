@@ -8,9 +8,9 @@ class ListViewLocation extends Component {
 
 		return (
 			<div className="listViewLocation">
-				<ul>
+				<ul aria-label={"Places of interest"} aria-hidden="false">
 					{listViewLocation.map((viewLocation, index) => (
-						<li key={index} onClick={() => handleChange(index)}>
+						<li aria-hidden="false" aria-label={`link ${viewLocation.name}`} key={index} onClick={() => handleChange(index)}>
 							{viewLocation.name}
 						</li>
 					))}
