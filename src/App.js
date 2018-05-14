@@ -52,11 +52,14 @@ export class MapContainer extends Component {
 	}
 
 	componentDidMount() {
-		this.getAddressApi().then(data => {			
+		this.getAddressApi().then(data => {
+			let index = 0;
 			for (const marker of this.objMarkers) {
-				for (const obj of data.response.venues) {				
+				for (const obj of data.response.venues) {			
 					if ((marker.position[0] == obj.location.lat) && (marker.position[1] == obj.location.lng)) {
 						this.state.AddressListMarkers.push({
+							key: index++,
+							visibility: true,
 							name: obj.name.substring(0, 38),
 							position: [obj.location.lat, obj.location.lng]
 						});
@@ -77,8 +80,14 @@ export class MapContainer extends Component {
 		});
 	}
 	
-	handleChange(event) {		
-		const index = event.target.value;
+	handleChange(event) {
+		const indexObj = event.target.value;
+
+		for (let markerObj of this.state.AddressListMarkers) {
+			markerObj.visibility = (markerObj.key === parseInt(indexObj, 8)) ? true : false;
+		}
+
+		this.setState({   AddressListMarkers: this.state.AddressListMarkers });
 	}
 
 	render() {
@@ -96,6 +105,7 @@ export class MapContainer extends Component {
 						{this.state.AddressListMarkers.map((marker, index) => (
 							<Marker
 								key={index}
+								visible={marker.visibility}
 								title={marker.title}
 								name={marker.name}
 								position={{lat: marker.position[0], lng: marker.position[1]}}
