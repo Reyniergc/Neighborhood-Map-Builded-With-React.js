@@ -116,7 +116,6 @@ export class MapContainer extends Component {
 								key={index}
 								animation={this.state.defaultAnimation}
 								visible={marker.visibility}
-								title={marker.title}
 								name={marker.name}
 								position={{lat: marker.position[0], lng: marker.position[1]}}
 								onClick={this.onMarkerClick} />
@@ -127,7 +126,6 @@ export class MapContainer extends Component {
 							visible={this.state.showingInfoWindow}>
 							<div>
 								<h1>{this.state.selectedPlace.name}</h1>
-								<p>{this.state.selectedPlace.title}</p>
 							</div>
 						</InfoWindow>					
 					</Map>
