@@ -8,13 +8,13 @@ class ListViewLocation extends Component {
 
 		return (
 			<div className="listViewLocation">
-				<select onChange={(event) => handleChange(event)}>
+				<ul>
 					{listViewLocation.map((viewLocation, index) => (
-						<option key={index} value={index}>
+						<li key={index} onClick={() => handleChange(index)}>
 							{viewLocation.name}
-						</option>
+						</li>
 					))}
-				</select>
+				</ul>
 			</div>
 		);
 	}

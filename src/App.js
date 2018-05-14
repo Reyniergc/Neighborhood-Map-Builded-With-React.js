@@ -76,25 +76,24 @@ export class MapContainer extends Component {
 
 	onMarkerClick = (props, marker, e) => {
 		this.setState({
+			defaultAnimation: null,
 			showingInfoWindow: true,
 			activeMarker: marker,
 			selectedPlace: props
 		});
 	}
 	
-	handleChange(event) {
-		const indexObj = event.target.value;
-
+	handleChange(index) {
 		for (let markerObj of this.state.AddressListMarkers) {
-			markerObj.visibility = (markerObj.key === parseInt(indexObj, 8)) ? true : false;
+			markerObj.visibility = (markerObj.key === parseInt(index, 8)) ? true : false;
 		}
 
 		this.setState({
 			showingInfoWindow: false,
 			AddressListMarkers: this.state.AddressListMarkers,
 			initialCenter: {
-				lat: this.state.AddressListMarkers[indexObj].position[0],
-				lng: this.state.AddressListMarkers[indexObj].position[1]
+				lat: this.state.AddressListMarkers[index].position[0],
+				lng: this.state.AddressListMarkers[index].position[1]
 			},
 			defaultAnimation: this.props.google.maps.Animation.BOUNCE
 		});
