@@ -8,6 +8,7 @@ export class MapContainer extends Component {
 		super(props);
 
 		this.state = {
+			defaultAnimation: this.props.google.maps.Animation.DROP,
 			AddressListMarkers: [],
 			showingInfoWindow: false,
 			activeMarker: {},
@@ -94,7 +95,8 @@ export class MapContainer extends Component {
 			initialCenter: {
 				lat: this.state.AddressListMarkers[indexObj].position[0],
 				lng: this.state.AddressListMarkers[indexObj].position[1]
-			}
+			},
+			defaultAnimation: this.props.google.maps.Animation.BOUNCE
 		});
 	}
 
@@ -104,7 +106,7 @@ export class MapContainer extends Component {
 				<ListViewLocation listViewLocation={this.state.AddressListMarkers} handleChange={this.handleChange} />
 			
 				<div id="google_map">
-					<Map 
+					<Map
 						google={this.props.google}
 						style={this.style}
 						center={{lat: this.state.initialCenter.lat, lng: this.state.initialCenter.lng}}
@@ -113,6 +115,7 @@ export class MapContainer extends Component {
 						{this.state.AddressListMarkers.map((marker, index) => (
 							<Marker
 								key={index}
+								animation={this.state.defaultAnimation}
 								visible={marker.visibility}
 								title={marker.title}
 								name={marker.name}
