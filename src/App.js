@@ -22,6 +22,24 @@ export class MapContainer extends Component {
 		this.objMarkers = [
 			{
 				position: ["35.84915612671902", "14.495490252452312"]
+			},
+			{
+				position: ["35.88168518370645", "14.39868219703174"]
+			},
+			{
+				position: ["35.82763899628345", "14.442086219787598"]
+			},
+			{
+				position: ["35.959100120885196", "14.424070468114488"]
+			},
+			{
+				position: ["35.91916039970346", "14.490078312897754"]
+			},
+			{
+				position: ["35.890281765367924", "14.508296901344293"]
+			},
+			{
+				position: ["35.898661", "14.51379"]
 			}
 		]
 
@@ -37,9 +55,9 @@ export class MapContainer extends Component {
 		this.getAddressApi().then(data => {			
 			for (const marker of this.objMarkers) {
 				for (const obj of data.response.venues) {				
-					if ((marker.position[0] == obj.location.lat) && (marker.position[1] == obj.location.lng)) {console.log("entre");
+					if ((marker.position[0] == obj.location.lat) && (marker.position[1] == obj.location.lng)) {
 						this.state.AddressListMarkers.push({
-							name: obj.name.substring(0, 34),
+							name: obj.name.substring(0, 38),
 							position: [obj.location.lat, obj.location.lng]
 						});
 						break;
@@ -64,7 +82,6 @@ export class MapContainer extends Component {
 	}
 
 	render() {
-		console.log(this.state.AddressListMarkers)
 		return (
 			<div className="container">
 				<ListViewLocation listViewLocation={this.state.AddressListMarkers} handleChange={this.handleChange} />
