@@ -11,7 +11,8 @@ export class MapContainer extends Component {
 			AddressListMarkers: [],
 			showingInfoWindow: false,
 			activeMarker: {},
-			selectedPlace: {}
+			selectedPlace: {},
+			initialCenter: {lat: 35.85472104, lng: 14.48779873}
 		};
 
 		this.style = {
@@ -87,7 +88,14 @@ export class MapContainer extends Component {
 			markerObj.visibility = (markerObj.key === parseInt(indexObj, 8)) ? true : false;
 		}
 
-		this.setState({   AddressListMarkers: this.state.AddressListMarkers });
+		this.setState({
+			showingInfoWindow: false,
+			AddressListMarkers: this.state.AddressListMarkers,
+			initialCenter: {
+				lat: this.state.AddressListMarkers[indexObj].position[0],
+				lng: this.state.AddressListMarkers[indexObj].position[1]
+			}
+		});
 	}
 
 	render() {
@@ -99,7 +107,7 @@ export class MapContainer extends Component {
 					<Map 
 						google={this.props.google}
 						style={this.style}
-						initialCenter={{lat: 35.85472104, lng: 14.48779873}}
+						center={{lat: this.state.initialCenter.lat, lng: this.state.initialCenter.lng}}
 						zoom={12}>
 
 						{this.state.AddressListMarkers.map((marker, index) => (
@@ -128,10 +136,10 @@ export class MapContainer extends Component {
 }
 
 const LoadingContainer = (props) => (
-  <div>Fancy loading container!</div>
+	<div>Fancy loading container!</div>
 )
  
 export default GoogleApiWrapper({
-  apiKey: ("AIzaSyBHq-A0EL3usDeqH5q8B635Rafxcguc0a8"),
-  LoadingContainer: LoadingContainer
+	apiKey: ("AIzaSyBHq-A0EL3usDeqH5q8B635Rafxcguc0a8"),
+	LoadingContainer: LoadingContainer
 })(MapContainer)
