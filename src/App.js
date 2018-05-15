@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import {Map, InfoWindow, Marker, GoogleApiWrapper} from 'google-maps-react';
 import ListViewLocation from './ListViewLocation';
+import $ from 'jquery';
 
 export class MapContainer extends Component {
 
@@ -80,7 +81,7 @@ export class MapContainer extends Component {
 			showingInfoWindow: true,
 			activeMarker: marker,
 			selectedPlace: props
-		});$('#myModal').modal('show');
+		});
 	}
 	
 	handleChange(index) {
@@ -97,6 +98,8 @@ export class MapContainer extends Component {
 			},
 			defaultAnimation: this.props.google.maps.Animation.BOUNCE
 		});
+		
+		$('#myModal').modal('show');
 	}
 
 	render() {
