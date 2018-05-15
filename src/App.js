@@ -80,7 +80,7 @@ export class MapContainer extends Component {
 			showingInfoWindow: true,
 			activeMarker: marker,
 			selectedPlace: props
-		});
+		});$('#myModal').modal('show');
 	}
 	
 	handleChange(index) {
