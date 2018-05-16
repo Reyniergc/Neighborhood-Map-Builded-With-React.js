@@ -6,6 +6,9 @@ Project realized during the Udacity Front-End Nano Degree course.
 - Open the command line in the folder of your project and execute the followings commands:
   - **npm install**. That will install the node dependencies
   - **npm install --save google-maps-react**. This command will install the node module Google Maps that will made the aplication able to work with react.js
+  - **npm install --save bootstrap**. As the application uses BootStrap Modal we need to install BootStrap.
+  - **npm install jquery**. This command will install jquery that is used by **BootStrap**.
+  - **npm install popper.js --save**. Also we need to install the popper module that is used by Jquery.
   - Now start the server -> **npm start**
 - To run the aplication use the link http://localhost:3000
 
