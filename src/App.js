@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import {Map, InfoWindow, Marker, GoogleApiWrapper} from 'google-maps-react';
 import ListViewLocation from './ListViewLocation';
+import Modal from './Modal';
 import * as GoogleMapsAPI from './utils/GoogleMapsAPI';
 import $ from 'jquery';
 
@@ -87,8 +88,11 @@ export class MapContainer extends Component {
 	}
 
 	openModal(index) {
-		document.getElementById("modalBody").innerHTML = this.state.AddressListMarkers[index].name;
-		$('#myModal').modal('show');
+		document.getElementById("modalHeader").innerHTML = this.state.AddressListMarkers[index].name;
+		$('#myModal').modal({
+			backdrop: 'static',
+			keyboard: false
+		});
 	}
 
 	handleChange(index) {
@@ -97,7 +101,7 @@ export class MapContainer extends Component {
 		}
 
 		this.setState({
-			zoom: 13,
+			zoom: 14,
 			showingInfoWindow: false,
 			AddressListMarkers: this.state.AddressListMarkers,
 			initialCenter: {
@@ -141,6 +145,8 @@ export class MapContainer extends Component {
 						</InfoWindow>					
 					</Map>
 				</div>
+
+				<Modal closeModal={this.closeModal} />
 			</div>
 		);
 	}
