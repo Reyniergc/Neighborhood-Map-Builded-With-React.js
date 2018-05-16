@@ -50,6 +50,7 @@ export class MapContainer extends Component {
 		]
 
 		this.handleChange = this.handleChange.bind(this);
+		this.filter = this.filter.bind(this);
 		this.closeModal = this.closeModal.bind(this);
 	}
 
@@ -113,11 +114,27 @@ export class MapContainer extends Component {
 
 		this.openModal(index);
 	}
+	
+	filter(event) {
+		const value = event.target.value;
+
+		for (const marker of this.state.AddressListMarkers) {
+			marker.visibility = (marker.name.toLowerCase().indexOf(value.toLowerCase()) !== -1) ? true : false;
+		}
+
+		this.setState({
+			defaultAnimation: null,
+			AddressListMarkers: this.state.AddressListMarkers
+		});
+	}
 
 	render() {
 		return (
 			<div className="container">
-				<ListViewLocation listViewLocation={this.state.AddressListMarkers} handleChange={this.handleChange} />
+				<ListViewLocation
+					listViewLocation={this.state.AddressListMarkers}
+					handleChange={this.handleChange}
+					filter={this.filter} />
 			
 				<div id="google_map">
 					<Map
