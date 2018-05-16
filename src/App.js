@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import {Map, InfoWindow, Marker, GoogleApiWrapper} from 'google-maps-react';
 import ListViewLocation from './ListViewLocation';
+import * as GoogleMapsAPI from './utils/GoogleMapsAPI';
 import $ from 'jquery';
 
 export class MapContainer extends Component {
@@ -9,6 +10,7 @@ export class MapContainer extends Component {
 		super(props);
 
 		this.state = {
+			zoom: 12,
 			defaultAnimation: this.props.google.maps.Animation.DROP,
 			AddressListMarkers: [],
 			showingInfoWindow: false,
@@ -47,15 +49,11 @@ export class MapContainer extends Component {
 		]
 
 		this.handleChange = this.handleChange.bind(this);
-	}
-	
-	getAddressApi() {
-		return fetch("https://api.foursquare.com/v2/venues/search?ll=35.85472104,14.48779873&categoryId=4bf58dd8d48988d181941735,4bf58dd8d48988d15e941735,4d4b7105d754a06374d81259,4bf58dd8d48988d13a941735,4bf58dd8d48988d1ed931735&client_id=LZL0304WQ5WHZCSUFSAPCVXF45DJNGGJAVDQGEL2J1DT04J5&client_secret=CZSMM1XIYLGFHZSZ3PMDXMOFSTHXE44ZWN4WFVK0IM0D4BK3&v=20180513")
-		.then(res => res.json())
+		this.closeModal = this.closeModal.bind(this);
 	}
 
 	componentDidMount() {
-		this.getAddressApi().then(data => {
+		GoogleMapsAPI.getAddressApi().then(data => {
 			let index = 0;
 			for (const marker of this.objMarkers) {
 				for (const obj of data.response.venues) {			
@@ -83,13 +81,23 @@ export class MapContainer extends Component {
 			selectedPlace: props
 		});
 	}
-	
+
+	closeModal() {
+		this.setState({ zoom: 11 });
+	}
+
+	openModal(index) {
+		document.getElementById("modalBody").innerHTML = this.state.AddressListMarkers[index].name;
+		$('#myModal').modal('show');
+	}
+
 	handleChange(index) {
 		for (let markerObj of this.state.AddressListMarkers) {
 			markerObj.visibility = (markerObj.key === parseInt(index, 8)) ? true : false;
 		}
 
 		this.setState({
+			zoom: 13,
 			showingInfoWindow: false,
 			AddressListMarkers: this.state.AddressListMarkers,
 			initialCenter: {
@@ -98,8 +106,8 @@ export class MapContainer extends Component {
 			},
 			defaultAnimation: this.props.google.maps.Animation.BOUNCE
 		});
-		
-		$('#myModal').modal('show');
+
+		this.openModal(index);
 	}
 
 	render() {
@@ -112,7 +120,7 @@ export class MapContainer extends Component {
 						google={this.props.google}
 						style={this.style}
 						center={{lat: this.state.initialCenter.lat, lng: this.state.initialCenter.lng}}
-						zoom={12}>
+						zoom={this.state.zoom}>
 
 						{this.state.AddressListMarkers.map((marker, index) => (
 							<Marker
