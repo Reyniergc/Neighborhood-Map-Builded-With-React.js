@@ -5,14 +5,15 @@ class ListViewLocation extends Component {
 
 	render() {
 		const { listViewLocation, selectedMarker, filter } = this.props
+
 		return (
 			<div className="listViewLocation">
 				<input type="text" placeholder="Filter" onChange={(event) => filter(event)} />
 
-				<ul aria-label={"Places of interest"} aria-hidden="false">
+				<ul aria-label={"Places of interest"} aria-hidden="false" className="list-group">
 					{listViewLocation.map((viewLocation, index) => (
 						(viewLocation.visibility &&
-							<li aria-hidden="false" aria-label={`link ${viewLocation.name}`} key={index} onClick={() => selectedMarker(index)}>
+							<li title={viewLocation.name} className="list-group-item " aria-hidden="false" aria-label={`link ${viewLocation.name}`} key={index} onClick={() => selectedMarker(index)}>
 								{viewLocation.name}
 							</li>
 						)

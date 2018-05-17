@@ -3,6 +3,7 @@ body {
 }
 
 ul {
+	cursor: pointer;
 	list-style: none;
 }
 

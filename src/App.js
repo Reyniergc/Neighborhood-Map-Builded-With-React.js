@@ -73,18 +73,28 @@ export class MapContainer extends Component {
 	}
 
 	closeModal() {
+		var items = document.getElementsByClassName("list-group-item");
+
+		for (let index = 0; index < items.length; index++) {
+			items[index].className = "list-group-item";
+		}
+
 		this.setState({ zoom: 11 });
 	}
 
 	openModal(index) {
 		document.getElementById("modalHeader").innerHTML = this.state.AddressListMarkers[index].name;
+
 		$('#myModal').modal({
 			backdrop: 'static',
 			keyboard: false
 		});
 	}
 
-	selectedMarker(index) {		
+	selectedMarker(index) {
+		var items = document.getElementsByClassName("list-group-item");
+		items[index].className = "list-group-item active";
+
 		this.setState(state => {
 			for (let markerObj of this.state.AddressListMarkers) {
 				markerObj.defaultAnimation = (markerObj.key === index) ? this.props.google.maps.Animation.BOUNCE : null;
