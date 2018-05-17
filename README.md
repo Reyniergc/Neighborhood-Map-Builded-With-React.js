@@ -7,7 +7,7 @@ Project realized during the Udacity Front-End Nano Degree course.
 - Download and install node.js
 - Open the command line in the folder of your project and execute the followings commands:
   - **npm install**. That will install the node dependencies
-  - **Install all dependencies directly => **npm install google-maps-react bootstrap jquery popper.js --save
+  - **Install all dependencies directly =>** npm install google-maps-react bootstrap jquery popper.js --save
   
   Or install the dependencies one by one:
   - **npm install --save google-maps-react**. This command will install the node module Google Maps that will made the aplication able to work with react.js
