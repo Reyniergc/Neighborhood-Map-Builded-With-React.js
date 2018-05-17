@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {Map, InfoWindow, Marker, GoogleApiWrapper} from 'google-maps-react';
+import {Map, Marker, GoogleApiWrapper} from 'google-maps-react';
 import ListViewLocation from './ListViewLocation';
 import Modal from './Modal';
 import * as GoogleMapsAPI from './utils/GoogleMapsAPI';
@@ -12,11 +12,7 @@ export class MapContainer extends Component {
 
 		this.state = {
 			zoom: 12,
-			defaultAnimation: this.props.google.maps.Animation.DROP,
 			AddressListMarkers: [],
-			showingInfoWindow: false,
-			activeMarker: {},
-			selectedPlace: {},
 			initialCenter: {lat: 35.85472104, lng: 14.48779873}
 		};
 
@@ -49,7 +45,7 @@ export class MapContainer extends Component {
 			}
 		]
 
-		this.handleChange = this.handleChange.bind(this);
+		this.selectedMarker = this.selectedMarker.bind(this);
 		this.filter = this.filter.bind(this);
 		this.closeModal = this.closeModal.bind(this);
 	}
@@ -64,7 +60,8 @@ export class MapContainer extends Component {
 							key: index++,
 							visibility: true,
 							name: obj.name.substring(0, 38),
-							position: [obj.location.lat, obj.location.lng]
+							position: [obj.location.lat, obj.location.lng],
+							defaultAnimation: this.props.google.maps.Animation.DROP
 						});
 						break;
 					}
@@ -73,15 +70,6 @@ export class MapContainer extends Component {
 
 			this.setState({ AddressListMarkers: this.state.AddressListMarkers });
 		})
-	}
-
-	onMarkerClick = (props, marker, e) => {
-		this.setState({
-			defaultAnimation: null,
-			showingInfoWindow: true,
-			activeMarker: marker,
-			selectedPlace: props
-		});
 	}
 
 	closeModal() {
@@ -96,20 +84,20 @@ export class MapContainer extends Component {
 		});
 	}
 
-	handleChange(index) {
-		for (let markerObj of this.state.AddressListMarkers) {
-			markerObj.visibility = (markerObj.key === parseInt(index, 8)) ? true : false;
-		}
+	selectedMarker(index) {		
+		this.setState(state => {
+			for (let markerObj of this.state.AddressListMarkers) {
+				markerObj.defaultAnimation = (markerObj.key === index) ? this.props.google.maps.Animation.BOUNCE : null;
+			}
 
-		this.setState({
-			zoom: 14,
-			showingInfoWindow: false,
-			AddressListMarkers: this.state.AddressListMarkers,
-			initialCenter: {
-				lat: this.state.AddressListMarkers[index].position[0],
-				lng: this.state.AddressListMarkers[index].position[1]
-			},
-			defaultAnimation: this.props.google.maps.Animation.BOUNCE
+			return {
+				zoom: 14,
+				AddressListMarkers: state.AddressListMarkers,
+				initialCenter: {
+					lat: this.state.AddressListMarkers[index].position[0],
+					lng: this.state.AddressListMarkers[index].position[1]
+				}
+			}
 		});
 
 		this.openModal(index);
@@ -120,10 +108,10 @@ export class MapContainer extends Component {
 
 		for (const marker of this.state.AddressListMarkers) {
 			marker.visibility = (marker.name.toLowerCase().indexOf(value.toLowerCase()) !== -1) ? true : false;
+			marker.defaultAnimation = null;
 		}
 
 		this.setState({
-			defaultAnimation: null,
 			AddressListMarkers: this.state.AddressListMarkers
 		});
 	}
@@ -133,7 +121,7 @@ export class MapContainer extends Component {
 			<div className="container">
 				<ListViewLocation
 					listViewLocation={this.state.AddressListMarkers}
-					handleChange={this.handleChange}
+					selectedMarker={this.selectedMarker}
 					filter={this.filter} />
 			
 				<div id="google_map">
@@ -146,20 +134,12 @@ export class MapContainer extends Component {
 						{this.state.AddressListMarkers.map((marker, index) => (
 							<Marker
 								key={index}
-								animation={this.state.defaultAnimation}
+								animation={marker.defaultAnimation}
 								visible={marker.visibility}
 								name={marker.name}
 								position={{lat: marker.position[0], lng: marker.position[1]}}
-								onClick={this.onMarkerClick} />
+								onClick={() => this.selectedMarker(index)} />
 						))}
-
-						<InfoWindow
-							marker={this.state.activeMarker}
-							visible={this.state.showingInfoWindow}>
-							<div>
-								<h1>{this.state.selectedPlace.name}</h1>
-							</div>
-						</InfoWindow>					
 					</Map>
 				</div>
 

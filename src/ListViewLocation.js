@@ -4,8 +4,7 @@ import PropTypes from 'prop-types';
 class ListViewLocation extends Component {
 
 	render() {
-		const { listViewLocation, handleChange, filter } = this.props
-		console.log(listViewLocation)
+		const { listViewLocation, selectedMarker, filter } = this.props
 		return (
 			<div className="listViewLocation">
 				<input type="text" placeholder="Filter" onChange={(event) => filter(event)} />
@@ -13,7 +12,7 @@ class ListViewLocation extends Component {
 				<ul aria-label={"Places of interest"} aria-hidden="false">
 					{listViewLocation.map((viewLocation, index) => (
 						(viewLocation.visibility &&
-							<li aria-hidden="false" aria-label={`link ${viewLocation.name}`} key={index} onClick={() => handleChange(index)}>
+							<li aria-hidden="false" aria-label={`link ${viewLocation.name}`} key={index} onClick={() => selectedMarker(index)}>
 								{viewLocation.name}
 							</li>
 						)
@@ -26,7 +25,7 @@ class ListViewLocation extends Component {
 
 ListViewLocation.propTypes = {
 	listViewLocation: PropTypes.array.isRequired,
-	handleChange: PropTypes.func.isRequired,
+	selectedMarker: PropTypes.func.isRequired,
 	filter: PropTypes.func.isRequired
 };
 
