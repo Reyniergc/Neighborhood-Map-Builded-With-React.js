@@ -1,6 +1,8 @@
 # Neighborhood-Map-Builded-With-React.js
 Project realized during the Udacity Front-End Nano Degree course.
 
+Install al dependencies directly => npm install google-maps-react bootstrap jquery popper.js --save
+
 **__Requeriments to run the aplication:__**
 - Download and install node.js
 - Open the command line in the folder of your project and execute the followings commands:
