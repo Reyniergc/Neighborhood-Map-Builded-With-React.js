@@ -91,9 +91,16 @@ export class MapContainer extends Component {
 		});
 	}
 
-	selectedMarker(index) {
+	selectedMarker(index, indexDiffLength) {
 		var items = document.getElementsByClassName("list-group-item");
-		items[index].className = "list-group-item active";
+
+		// We can use the index only if both array have the same length.
+		if (items.length === this.state.AddressListMarkers.length) {
+			items[index].className = "list-group-item active";
+		}
+		else {
+			items[indexDiffLength].className = "list-group-item active";
+		}
 
 		this.setState(state => {
 			for (let markerObj of this.state.AddressListMarkers) {
@@ -125,8 +132,17 @@ export class MapContainer extends Component {
 			AddressListMarkers: this.state.AddressListMarkers
 		});
 	}
+	
+	
 
 	render() {
+		let arrListViewLocationFiltered = [];
+		for (const marker of this.state.AddressListMarkers) {
+			if (marker.visibility) {
+				arrListViewLocationFiltered.push(marker);
+			}
+		}
+
 		return (
 			<div className="container">
 				<ListViewLocation
@@ -141,14 +157,13 @@ export class MapContainer extends Component {
 						center={{lat: this.state.initialCenter.lat, lng: this.state.initialCenter.lng}}
 						zoom={this.state.zoom}>
 
-						{this.state.AddressListMarkers.map((marker, index) => (
+						{arrListViewLocationFiltered.map((marker, index) => (
 							<Marker
-								key={index}
+								key={marker.key}
 								animation={marker.defaultAnimation}
-								visible={marker.visibility}
 								name={marker.name}
 								position={{lat: marker.position[0], lng: marker.position[1]}}
-								onClick={() => this.selectedMarker(index)} />
+								onClick={() => this.selectedMarker(marker.key, index)} />
 						))}
 					</Map>
 				</div>
