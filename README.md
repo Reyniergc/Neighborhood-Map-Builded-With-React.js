@@ -26,8 +26,8 @@ The main goal of this project is learn to uses the Google Maps Api using React.j
 
 **References:**
 
-- https://www.npmjs.com/package/google-maps-react
+- [React Google Maps Module](https://www.npmjs.com/package/google-maps-react)
 
-- http://gorangajic.github.io/react-icons/
+- [React Icons Module](http://gorangajic.github.io/react-icons/)
 
-- https://developer.foursquare.com/
+- [Four Square](https://developer.foursquare.com/)
