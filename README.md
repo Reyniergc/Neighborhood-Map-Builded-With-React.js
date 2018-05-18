@@ -4,7 +4,7 @@ Project realized during the Udacity Front-End Nano Degree course.
 **__Main goal of the project Neighborhood Map.__**
 
 The main goal of this project is to learn to use Google Maps Api using React.js. The application shows the map of
-Malta island with seven marker on the map that display util information about the place such as the name of the place, country, city, address, postal code, geographical coordinates.
+Malta island with seven marker on the map that display util information about the place such as the name of the place, country, city, address, postal code and geographical coordinates.
 
 
 **__Requeriments to run the aplication:__**
