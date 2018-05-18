@@ -52,14 +52,19 @@ export class MapContainer extends Component {
 
 	componentDidMount() {
 		GoogleMapsAPI.getAddressApi().then(data => {
+			console.log(data.response.venues)
 			let index = 0;
 			for (const marker of this.objMarkers) {
-				for (const obj of data.response.venues) {			
+				for (const obj of data.response.venues) {		
 					if ((marker.position[0] == obj.location.lat) && (marker.position[1] == obj.location.lng)) {
 						this.state.AddressListMarkers.push({
 							key: index++,
 							visibility: true,
 							name: obj.name.substring(0, 38),
+							address: (obj.location.address) ? obj.location.address : "Unknown",
+							country: obj.location.country,
+							city: obj.location.city,
+							postalCode: obj.location.postalCode,
 							position: [obj.location.lat, obj.location.lng],
 							defaultAnimation: this.props.google.maps.Animation.DROP
 						});
@@ -83,7 +88,17 @@ export class MapContainer extends Component {
 	}
 
 	openModal(index) {
-		document.getElementById("modalHeader").innerHTML = this.state.AddressListMarkers[index].name;
+		const headerTitle = this.state.AddressListMarkers[index].name;
+		const address = this.state.AddressListMarkers[index].address;
+		const country = this.state.AddressListMarkers[index].country;
+		const city = this.state.AddressListMarkers[index].city;
+		const postalCode = this.state.AddressListMarkers[index].postalCode;
+
+		document.getElementById("modalHeader").innerHTML = headerTitle;
+		document.getElementById("modalAddrress").innerHTML = address;
+		document.getElementById("modalCountry").innerHTML = country;
+		document.getElementById("modalCity").innerHTML = city;
+		document.getElementById("modalPostalCode").innerHTML = postalCode;
 
 		$('#myModal').modal({
 			backdrop: 'static',
@@ -119,7 +134,7 @@ export class MapContainer extends Component {
 
 		this.openModal(index);
 	}
-	
+
 	filter(event) {
 		const value = event.target.value;
 
@@ -132,8 +147,6 @@ export class MapContainer extends Component {
 			AddressListMarkers: this.state.AddressListMarkers
 		});
 	}
-	
-	
 
 	render() {
 		let arrListViewLocationFiltered = [];

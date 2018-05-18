@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import * as FontAwesome from 'react-icons/lib/fa';
 
 class Modal extends Component {
 
@@ -11,7 +12,7 @@ class Modal extends Component {
 				<div className="modal-dialog">
 					<div className="modal-content">
 						<div className="modal-header">
-							<h4 className="modal-title" id="congratulationsHeader" id="modalHeader">
+							<h4 className="modal-title" id="modalHeader">
 								Modal Header
 							</h4>
 							<button type="button" className="close" data-dismiss="modal" onClick={() => closeModal()}>
@@ -20,7 +21,10 @@ class Modal extends Component {
 						</div>
 
 						<div className="modal-body">
-							<p id="modalBody"></p>
+							<p><FontAwesome.FaBank /> Address: <span id="modalAddrress"></span></p>
+							<p><FontAwesome.FaBank /> Country: <span id="modalCountry"></span></p>
+							<p><FontAwesome.FaBank /> City: <span id="modalCity"></span></p>
+							<p><FontAwesome.FaBank /> Postal Code: <span id="modalPostalCode"></span></p>
 						</div>
 
 						<div className="modal-footer">
