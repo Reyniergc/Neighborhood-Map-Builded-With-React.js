@@ -52,28 +52,29 @@ export class MapContainer extends Component {
 
 	componentDidMount() {
 		GoogleMapsAPI.getAddressApi().then(data => {
-			console.log(data.response.venues)
-			let index = 0;
-			for (const marker of this.objMarkers) {
-				for (const obj of data.response.venues) {		
-					if ((marker.position[0] == obj.location.lat) && (marker.position[1] == obj.location.lng)) {
-						this.state.AddressListMarkers.push({
-							key: index++,
-							visibility: true,
-							name: obj.name.substring(0, 38),
-							address: (obj.location.address) ? obj.location.address : "Unknown",
-							country: obj.location.country,
-							city: obj.location.city,
-							postalCode: obj.location.postalCode,
-							position: [obj.location.lat, obj.location.lng],
-							defaultAnimation: this.props.google.maps.Animation.DROP
-						});
-						break;
+			if (data.meta.code === 200) {
+				let index = 0;
+				for (const marker of this.objMarkers) {
+					for (const obj of data.response.venues) {		
+						if ((marker.position[0] == obj.location.lat) && (marker.position[1] == obj.location.lng)) {
+							this.state.AddressListMarkers.push({
+								key: index++,
+								visibility: true,
+								name: obj.name.substring(0, 38),
+								address: (obj.location.address) ? obj.location.address : "Unknown",
+								country: obj.location.country,
+								city: obj.location.city,
+								postalCode: obj.location.postalCode,
+								position: [obj.location.lat, obj.location.lng],
+								defaultAnimation: this.props.google.maps.Animation.DROP
+							});
+							break;
+						}
 					}
 				}
-			}
 
-			this.setState({ AddressListMarkers: this.state.AddressListMarkers });
+				this.setState({ AddressListMarkers: this.state.AddressListMarkers });
+			}
 		})
 	}
 
