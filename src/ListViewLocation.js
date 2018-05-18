@@ -8,7 +8,7 @@ class ListViewLocation extends Component {
 
 		return (
 			<div className="listViewLocation">
-				<input type="text" placeholder="Filter" onChange={(event) => filter(event)} />
+				<input type="text" className="form-control" aria-describedby="Maker Filter" placeholder="Filter" onChange={(event) => filter(event)} />
 
 				<ul aria-label={"Places of interest"} aria-hidden="false" className="list-group">
 					{listViewLocation.map((viewLocation, index) => (
