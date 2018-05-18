@@ -20,13 +20,14 @@ Project realized during the Udacity Front-End Nano Degree course.
 
 **React Official Documentation:** https://reactjs.org
 
-**Google Maps Api official documentation:**
-
-https://www.npmjs.com/package/google-maps-react
-https://medium.com/front-end-hacking/simplified-google-maps-api-in-a-react-app-46981441d2c9
-http://gorangajic.github.io/react-icons/
-
-
 **__Main goal of the project Neighborhood Map.__**
 
 The main goal of this project is learn to uses the Google Maps Api using React.js
+
+**References:**
+
+- https://www.npmjs.com/package/google-maps-react
+
+- http://gorangajic.github.io/react-icons/
+
+- https://developer.foursquare.com/
