@@ -18,7 +18,6 @@ Project realized during the Udacity Front-End Nano Degree course.
   - Now start the server -> **npm start**
 - To run the aplication use the link http://localhost:3000
 
-**React Official Documentation:** https://reactjs.org
 
 **__Main goal of the project Neighborhood Map.__**
 
@@ -31,3 +30,5 @@ The main goal of this project is learn to uses the Google Maps Api using React.j
 - [React Icons Module](http://gorangajic.github.io/react-icons/)
 
 - [Four Square](https://developer.foursquare.com/)
+
+- [React Official Documentation](https://reactjs.org)
