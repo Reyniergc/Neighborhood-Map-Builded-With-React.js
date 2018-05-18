@@ -1,6 +1,10 @@
 # Neighborhood-Map-Builded-With-React.js
 Project realized during the Udacity Front-End Nano Degree course.
 
+**__Main goal of the project Neighborhood Map.__**
+
+The main goal of this project is to learn to use Google Maps Api using React.js. The application shows the map of
+Malta island with seven marker on the map that display util information about the place such as the name of the place, country, city, address, postal code, geographical coordinates.
 
 
 **__Requeriments to run the aplication:__**
@@ -19,10 +23,6 @@ Project realized during the Udacity Front-End Nano Degree course.
 - To run the aplication use the link http://localhost:3000
 
 
-**__Main goal of the project Neighborhood Map.__**
-
-The main goal of this project is learn to uses the Google Maps Api using React.js
-
 **References:**
 
 - [React Google Maps Module](https://www.npmjs.com/package/google-maps-react)
@@ -34,4 +34,3 @@ The main goal of this project is learn to uses the Google Maps Api using React.j
 - [React Official Documentation](https://reactjs.org)
 
 - [Twiteer BootStrap Official Documentation](https://getbootstrap.com/)
-
