@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import * as FontAwesome from 'react-icons/lib/fa';
+import * as FontAwesomeIcons from 'react-icons/lib/fa';
+import * as MdIcons from 'react-icons/lib/md';
 
 class Modal extends Component {
 
@@ -21,10 +22,10 @@ class Modal extends Component {
 						</div>
 
 						<div className="modal-body">
-							<p><FontAwesome.FaBank /> Address: <span id="modalAddrress"></span></p>
-							<p><FontAwesome.FaBank /> Country: <span id="modalCountry"></span></p>
-							<p><FontAwesome.FaBank /> City: <span id="modalCity"></span></p>
-							<p><FontAwesome.FaBank /> Postal Code: <span id="modalPostalCode"></span></p>
+							<p><MdIcons.MdAddLocation /> Address: <span id="modalAddrress"></span></p>
+							<p><FontAwesomeIcons.FaFlag /> Country: <span id="modalCountry"></span></p>
+							<p><MdIcons.MdLocationCity /> City: <span id="modalCity"></span></p>
+							<p><MdIcons.MdMarkunreadMailbox /> Postal Code: <span id="modalPostalCode"></span></p>
 						</div>
 
 						<div className="modal-footer">
