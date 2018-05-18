@@ -14,8 +14,8 @@ class ListViewLocation extends Component {
 		}
 
 		return (
-			<div className="listViewLocation">
-				<input type="text" className="form-control" aria-describedby="Maker Filter" placeholder="Filter" onChange={(event) => filter(event)} />
+			<div className="col-sm-3">
+				<input type="text" className="form-control" aria-describedby="Maker Filter" placeholder="Search a place by name..." onChange={(event) => filter(event)} />
 
 				<ul aria-label={"Places of interest"} aria-hidden="false" className="list-group">
 					{arrListViewLocationFiltered.map((viewLocation, index) => (

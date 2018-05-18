@@ -4,9 +4,10 @@ body {
 
 ul {
 	cursor: pointer;
-	list-style: none;
+	/*list-style: none;*/
 }
 
+/*
 .listViewLocation {
 	width: 30%;
 }
@@ -14,3 +15,4 @@ ul {
 .container {
 	display: flex;
 }
+*/

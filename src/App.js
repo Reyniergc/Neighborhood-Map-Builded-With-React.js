@@ -18,7 +18,7 @@ export class MapContainer extends Component {
 
 		this.style = {
 			height: "97%",
-			width: "70%"
+			width: "75%"
 		}
 
 		this.objMarkers = [
@@ -162,31 +162,33 @@ export class MapContainer extends Component {
 		}
 
 		return (
-			<div className="container">
-				<ListViewLocation
-					listViewLocation={this.state.AddressListMarkers}
-					selectedMarker={this.selectedMarker}
-					filter={this.filter} />
-			
-				<div id="google_map">
-					<Map
-						google={this.props.google}
-						style={this.style}
-						center={{lat: this.state.initialCenter.lat, lng: this.state.initialCenter.lng}}
-						zoom={this.state.zoom}>
+			<div className="container-fluid">
+				<div className="row">
+					<ListViewLocation
+						listViewLocation={this.state.AddressListMarkers}
+						selectedMarker={this.selectedMarker}
+						filter={this.filter} />
+				
+					<div className="w-75" id="google_map">
+						<Map
+							google={this.props.google}
+							style={this.style}
+							center={{lat: this.state.initialCenter.lat, lng: this.state.initialCenter.lng}}
+							zoom={this.state.zoom}>
 
-						{arrListViewLocationFiltered.map((marker, index) => (
-							<Marker
-								key={marker.key}
-								animation={marker.defaultAnimation}
-								name={marker.name}
-								position={{lat: marker.position[0], lng: marker.position[1]}}
-								onClick={() => this.selectedMarker(marker.key, index)} />
-						))}
-					</Map>
+							{arrListViewLocationFiltered.map((marker, index) => (
+								<Marker
+									key={marker.key}
+									animation={marker.defaultAnimation}
+									name={marker.name}
+									position={{lat: marker.position[0], lng: marker.position[1]}}
+									onClick={() => this.selectedMarker(marker.key, index)} />
+							))}
+						</Map>
+					</div>
+
+					<Modal closeModal={this.closeModal} />
 				</div>
-
-				<Modal closeModal={this.closeModal} />
 			</div>
 		);
 	}
