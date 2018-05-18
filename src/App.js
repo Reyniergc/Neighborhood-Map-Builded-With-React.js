@@ -93,12 +93,16 @@ export class MapContainer extends Component {
 		const country = this.state.AddressListMarkers[index].country;
 		const city = this.state.AddressListMarkers[index].city;
 		const postalCode = this.state.AddressListMarkers[index].postalCode;
+		const locationLat = this.state.AddressListMarkers[index].position[0];
+		const locationLng = this.state.AddressListMarkers[index].position[1];
 
 		document.getElementById("modalHeader").innerHTML = headerTitle;
 		document.getElementById("modalAddrress").innerHTML = address;
 		document.getElementById("modalCountry").innerHTML = country;
 		document.getElementById("modalCity").innerHTML = city;
 		document.getElementById("modalPostalCode").innerHTML = postalCode;
+		document.getElementById("modalLat").innerHTML = locationLat;
+		document.getElementById("modalLng").innerHTML = locationLng;
 
 		$('#myModal').modal({
 			backdrop: 'static',

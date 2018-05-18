@@ -22,10 +22,12 @@ class Modal extends Component {
 						</div>
 
 						<div className="modal-body">
-							<p><MdIcons.MdAddLocation /> Address: <span id="modalAddrress"></span></p>
-							<p><FontAwesomeIcons.FaFlag /> Country: <span id="modalCountry"></span></p>
-							<p><MdIcons.MdLocationCity /> City: <span id="modalCity"></span></p>
-							<p><MdIcons.MdMarkunreadMailbox /> Postal Code: <span id="modalPostalCode"></span></p>
+							<p><MdIcons.MdAddLocation /> <b>Address: </b><span id="modalAddrress"></span></p>
+							<p><FontAwesomeIcons.FaFlag /> <b>Country: </b><span id="modalCountry"></span></p>
+							<p><MdIcons.MdLocationCity /> <b>City: </b><span id="modalCity"></span></p>
+							<p><MdIcons.MdMarkunreadMailbox /> <b>Postal Code: </b><span id="modalPostalCode"></span></p>
+							<p><FontAwesomeIcons.FaGlobe /> <b>Location Lat: </b><span id="modalLat"></span></p>
+							<p><FontAwesomeIcons.FaGlobe /> <b>Location Lng: </b><span id="modalLng"></span></p>
 						</div>
 
 						<div className="modal-footer">
