@@ -34,3 +34,5 @@ Malta island with seven marker on the map that display util information about th
 - [React Official Documentation](https://reactjs.org)
 
 - [Twiteer BootStrap Official Documentation](https://getbootstrap.com/)
+
+- [Service Worker Documentation](https://www.sitepoint.com/getting-started-with-service-workers/)
