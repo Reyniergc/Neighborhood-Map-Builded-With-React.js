@@ -36,3 +36,5 @@ Also this project uses a **__Service Worker__** that allow the user uses the app
 - [Twiteer BootStrap Official Documentation](https://getbootstrap.com/)
 
 - [Service Worker Documentation](https://www.sitepoint.com/getting-started-with-service-workers/)
+
+- [Aria Documentation](https://www.w3.org/TR/wai-aria/)
