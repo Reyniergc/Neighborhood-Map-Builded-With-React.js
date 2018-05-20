@@ -5,7 +5,7 @@ Project realized during the Udacity Front-End Nano Degree course.
 
 The main goal of this project is to learn to use Google Maps Api using React.js. The application shows the map of
 Malta island with seven marker on the map that display util information about the place such as the name of the place, country, city, address, postal code and geographical coordinates.
-
+Also this project uses a **__Service Worker__** that allow the user uses the application without having a network connection.
 
 **__Requeriments to run the aplication:__**
 - Download and install node.js
