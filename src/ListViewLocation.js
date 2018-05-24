@@ -29,6 +29,15 @@ class ListViewLocation extends Component {
 					<a href="#" className="close" data-dismiss="alert" aria-label="close" title="Close">×</a>
 					<strong>Error API!</strong> <span id="messageErrorApi"></span>
 				</div>
+				
+				<div className="alert alert-info" id="info">
+					<p>Neighbourhood Map Project made by <strong>Reynier Téllez</strong></p>
+					<p>This is the final project in the Udacity Front-End Nanodegree Program.</p>
+					<p>
+						<strong>Disclaimer:</strong> The data provided in the modals is provided by <strong><a href="https://developer.foursquare.com" target="_blank" title="FourSquare Api Documentation">FourSquare API</a></strong>.
+					</p>
+					<p>Copyright 2018. All rights reserved.</p>
+				</div>
 			</div>
 		);
 	}

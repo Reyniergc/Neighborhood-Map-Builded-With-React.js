@@ -12,6 +12,10 @@ ul {
 	margin-top : 10px;
 }
 
+#info {
+	text-align: center;
+}
+
 /*
 .listViewLocation {
 	width: 30%;
