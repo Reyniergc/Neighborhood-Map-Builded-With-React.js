@@ -7,6 +7,10 @@ The main goal of this project is to learn to use Google Maps Api using React.js.
 Malta island with seven markers on the map that display util information about the places such as the name of the place, country, city, address, postal code and geographical coordinates.
 Also this project uses a **__Service Worker__** that allows the user to use the application while offline without having a network connection.
 
+**__PLEASE NOTE:__** The service workers for this app will only cache the site when it is in production mode.
+As the current application is running in development mode, if you want you can change the enviroment to **production mode** and for do this you should execute the following command:
+**npm run build**
+
 **__Requeriments to run the aplication:__**
 - Download and install node.js
 - Open the command line in the folder of your project and execute the followings commands:
