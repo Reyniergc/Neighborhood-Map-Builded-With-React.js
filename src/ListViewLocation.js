@@ -15,22 +15,23 @@ class ListViewLocation extends Component {
 
 		return (
 			<div className="col-sm-3">
-				<input type="text" className="form-control" aria-describedby="Maker Filter" placeholder="Search a place by name..." onChange={(event) => filter(event)} autoFocus="autoFocus" />
+				<label htmlFor="searchPlace">Search a place by name:</label>
+				<input id="searchPlace" type="text" className="form-control" aria-label="Search Place" aria-describedby="Maker Filter" placeholder="Type here..." onChange={(event) => filter(event)} autoFocus="autoFocus" />
 
-				<ul aria-label={"Places of interest"} aria-hidden="false" className="list-group">
+				<ul role="listitem" aria-label={"Places of interest"} aria-hidden="false" className="list-group">
 					{arrListViewLocationFiltered.map((viewLocation, index) => (
-						<li title={viewLocation.name} className="list-group-item " aria-hidden="false" aria-label={`link ${viewLocation.name}`} key={viewLocation.key} onClick={() => selectedMarker(viewLocation.key, index)}>
+						<li title={viewLocation.name} className="list-group-item" tabIndex={index} aria-hidden="false" aria-label={`link ${viewLocation.name}`} key={viewLocation.key} onClick={() => selectedMarker(viewLocation.key, index)}>
 							{viewLocation.name}
 						</li>
 					))}
 				</ul>
 
-				<div id="errorApi" className="alert alert-danger">
+				<div role="contentinfoerror" id="errorApi" className="alert alert-danger">
 					<a href="#" className="close" data-dismiss="alert" aria-label="close" title="Close">×</a>
 					<strong>Error API!</strong> <span id="messageErrorApi"></span>
 				</div>
 				
-				<div className="alert alert-info" id="info">
+				<div role="contentinfo" className="alert alert-info" id="info">
 					<p>Neighbourhood Map Project made by <strong>Reynier Téllez</strong></p>
 					<p>This is the final project in the Udacity Front-End Nanodegree Program.</p>
 					<p>
