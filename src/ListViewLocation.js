@@ -24,6 +24,11 @@ class ListViewLocation extends Component {
 						</li>
 					))}
 				</ul>
+
+				<div id="errorApi" className="alert alert-danger">
+					<a href="#" className="close" data-dismiss="alert" aria-label="close" title="Close">×</a>
+					<strong>Error API!</strong> <span id="messageErrorApi"></span>
+				</div>
 			</div>
 		);
 	}
