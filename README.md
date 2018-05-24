@@ -9,7 +9,8 @@ Also this project uses a **__Service Worker__** that allows the user to use the 
 
 **__PLEASE NOTE:__** The service workers for this app will only cache the site when it is in production mode.
 As the current application is running in development mode, if you want you can change the enviroment to **production mode** and for do this you should execute the following command:
-**npm run build**
+
+- **npm run build**
 
 **__Requeriments to run the aplication:__**
 - Download and install node.js
