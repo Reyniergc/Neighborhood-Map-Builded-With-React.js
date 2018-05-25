@@ -8,7 +8,7 @@ Malta island with seven markers on the map that display util information about t
 Also this project uses a **__Service Worker__** that allows the user to use the application while offline without having a network connection.
 
 **__PLEASE NOTE:__** The service workers for this app will only cache the site when it is in production mode.
-As the current application is running in development mode, if you want you can change the enviroment to **production mode** and for do this you should execute the following command:
+As the current application is running in development mode, if you want you can change the enviroment to **production mode**. For do this you should execute the following command:
 
 **Disclaimer:** The data used by the application is provided by [Four Square](https://developer.foursquare.com/).
 
