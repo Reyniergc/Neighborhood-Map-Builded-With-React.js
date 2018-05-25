@@ -10,9 +10,9 @@ Also this project uses a **__Service Worker__** that allows the user to use the 
 **__PLEASE NOTE:__** The service workers for this app will only cache the site when it is in production mode.
 As the current application is running in development mode, if you want you can change the enviroment to **production mode**. For do this you should execute the following command:
 
-**Disclaimer:** The data used by the application is provided by [Four Square](https://developer.foursquare.com/).
-
 - **npm run build**
+
+**Disclaimer:** The data used by the application is provided by [Four Square](https://developer.foursquare.com/).
 
 **__Requeriments to run the aplication:__**
 - Download and install node.js
