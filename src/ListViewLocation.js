@@ -16,11 +16,11 @@ class ListViewLocation extends Component {
 		return (
 			<div className="col-sm-3">
 				<label htmlFor="searchPlace">Search a place by name:</label>
-				<input id="searchPlace" type="text" className="form-control" aria-label="Search Place" aria-describedby="Maker Filter" placeholder="Type here..." onChange={(event) => filter(event)} autoFocus="autoFocus" />
+				<input id="searchPlace" type="text" className="form-control" aria-label="Search Places" aria-describedby="Maker Filter" placeholder="Type here..." onChange={(event) => filter(event)} autoFocus="autoFocus" tabIndex="1" />
 
-				<ul role="listitem" aria-label={"Places of interest"} aria-hidden="false" className="list-group">
+				<ul role="list" tabIndex="1" aria-label={"Places of interest"} aria-hidden="false" className="list-group">
 					{arrListViewLocationFiltered.map((viewLocation, index) => (
-						<li title={viewLocation.name} className="list-group-item" tabIndex={index} aria-hidden="false" aria-label={`link ${viewLocation.name}`} key={viewLocation.key} onClick={() => selectedMarker(viewLocation.key, index)}>
+						<li role="listitem" title={viewLocation.name} className="list-group-item" tabIndex="1" aria-hidden="false" aria-label={`link ${viewLocation.name}`} key={viewLocation.key} onClick={() => selectedMarker(viewLocation.key, index)}>
 							{viewLocation.name}
 						</li>
 					))}

@@ -172,7 +172,7 @@ export class MapContainer extends Component {
 						selectedMarker={this.selectedMarker}
 						filter={this.filter} />
 				
-					<div className="w-75" id="google_map">
+					<div className="w-75" id="google_map" role="application">
 						<Map
 							google={this.props.google}
 							style={this.style}
