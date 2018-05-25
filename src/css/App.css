@@ -17,6 +17,10 @@ ul {
 	text-align: center;
 }
 
+#searchPlace {
+	margin-bottom: 10px;
+}
+
 /*
 .listViewLocation {
 	width: 30%;
